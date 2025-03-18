@@ -150,16 +150,12 @@ const app = express();
 app.use(express.json());
 
 const isVercel = process.env.VERCEL === "1" || process.env.VERCEL === "true";
-console.log("应用启动");
-console.log(`运行环境: ${isVercel ? "Vercel" : "Local"}`);
-console.log(`当前工作目录: ${process.cwd()}`);
 
-// API 路由
+// API
 app.use("/api", recipeRouter);
 app.use("/api", mealplanRouter);
 app.use("/api", suggestionRouter);
 
-// 健康检查端点
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     status: "ok",
@@ -168,34 +164,26 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-// 解决 __dirname 在 ES 模块中的问题
+// es module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 console.log("__dirname:", __dirname);
 
-// 简化静态文件路径逻辑
 let staticPath = null;
 
-// Vercel环境下的路径
 if (isVercel) {
-  // Vercel部署时，前端构建位置应该是项目根目录下的frontend/dist
   staticPath = path.join(process.cwd(), "frontend/dist");
 } else {
-  // 本地开发环境
   staticPath = path.join(__dirname, "frontend/dist");
 }
 
-console.log(`尝试使用静态文件路径: ${staticPath}`);
-
-// 检查静态文件路径是否存在
 try {
   if (fs.existsSync(staticPath)) {
-    console.log(`静态文件路径有效: ${staticPath}`);
+    console.log(`vaild static path: ${staticPath}`);
     app.use(express.static(staticPath));
   } else {
-    console.log(`警告: 静态文件路径不存在: ${staticPath}`);
+    console.log(`can not find static path: ${staticPath}`);
 
-    // 尝试查找其他可能路径
     const fallbackPaths = [
       path.join(process.cwd(), "dist"),
       path.join(__dirname, "dist"),
@@ -204,48 +192,44 @@ try {
 
     for (const testPath of fallbackPaths) {
       try {
-        console.log(`检查备用静态文件路径: ${testPath}`);
+        console.log(`check static path: ${testPath}`);
         if (fs.existsSync(testPath)) {
           staticPath = testPath;
-          console.log(`找到备用静态文件路径: ${staticPath}`);
+          console.log(`find static path: ${staticPath}`);
           app.use(express.static(staticPath));
           break;
         }
       } catch (error) {
-        console.log(`检查路径错误 ${testPath}: ${error.message}`);
+        console.log(`error ${testPath}: ${error.message}`);
       }
     }
   }
 } catch (error) {
-  console.log(`检查静态文件路径错误: ${error.message}`);
+  console.log(`error: ${error.message}`);
 }
 
-// 处理SPA路由 - 所有非API路由返回index.html
+//???
 app.get("*", (req, res) => {
   if (!req.path.startsWith("/api")) {
     if (staticPath) {
       const indexPath = path.join(staticPath, "index.html");
       if (fs.existsSync(indexPath)) {
-        console.log(`提供index.html: ${indexPath}`);
+        console.log(`index.html: ${indexPath}`);
         return res.sendFile(indexPath);
       }
     }
 
-    // 如果找不到index.html，返回基本HTML
     res.status(200).send(`
       <html>
         <head><title>CookBook</title></head>
         <body>
-          <h1>CookBook API 服务器已启动</h1>
-          <p>前端文件未找到。请确保正确构建前端应用。</p>
-          <p>请求路径: ${req.path}</p>
+          <p> ${req.path}</p>
         </body>
       </html>
     `);
   }
 });
 
-// 在Vercel环境中自动连接数据库
 if (isVercel) {
   connectToDatabase()
     .then(() => console.log("数据库连接成功"))

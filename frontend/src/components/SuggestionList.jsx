@@ -50,7 +50,6 @@ SuggestionList.propTypes = {
   ),
 };
 
-// 添加默认属性
 SuggestionList.defaultProps = {
   suggestions: [],
 };

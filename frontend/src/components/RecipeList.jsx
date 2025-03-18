@@ -6,7 +6,6 @@ function RecipeList({ recipes: propRecipes, onRecipeDeleted }) {
   const [localRecipes, setLocalRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // 获取菜谱数据
   const fetchRecipes = async () => {
     try {
       setLoading(true);
@@ -23,16 +22,14 @@ function RecipeList({ recipes: propRecipes, onRecipeDeleted }) {
     }
   };
 
-  // 初始化加载（仅当没有传递propRecipes时）
   useEffect(() => {
     if (!propRecipes) {
       fetchRecipes();
     } else {
-      setLoading(false); // 如果有传递recipes，则不需要加载
+      setLoading(false);
     }
   }, [propRecipes]);
 
-  // 当删除菜谱时
   const handleRecipeDeleted = (recipeId) => {
     if (onRecipeDeleted) {
       onRecipeDeleted(recipeId);
@@ -43,7 +40,6 @@ function RecipeList({ recipes: propRecipes, onRecipeDeleted }) {
     }
   };
 
-  // 使用props传入的recipes或者自己获取的recipes
   const recipesToDisplay = propRecipes || localRecipes;
 
   if (loading) return <p>Loading recipes...</p>;

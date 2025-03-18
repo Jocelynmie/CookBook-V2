@@ -30,13 +30,12 @@ var server = http.createServer(app);
 async function startServer() {
   try {
     await connectToDatabase();
-    console.log("数据库连接成功");
+    console.log("db connect successfully");
 
     server.listen(port);
     server.on("error", onError);
     server.on("listening", onListening);
   } catch (error) {
-    console.error("启动服务器错误:", error);
     process.exit(1);
   }
 }
