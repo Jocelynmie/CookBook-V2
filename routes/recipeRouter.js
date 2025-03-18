@@ -46,12 +46,22 @@ router.put("/recipes/:id", async (req, res) => {
   }
 });
 
+// router.delete("/recipes/:id", async (req, res) => {
+//   try {
+//     await RecipeModel.deleteRecipe(req.params.id);
+//     res.json({ message: "successfully delete" });
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 router.delete("/recipes/:id", async (req, res) => {
   try {
+    console.log(`Attempting to delete recipe with ID: ${req.params.id}`);
     await RecipeModel.deleteRecipe(req.params.id);
     res.json({ message: "successfully delete" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    console.error(`Error deleting recipe: ${error.message}`, error);
+    res.status(500).json({ message: error.message, stack: error.stack });
   }
 });
 

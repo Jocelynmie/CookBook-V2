@@ -70,39 +70,65 @@ export async function addRecipe(recipe) {
 //   return await collections.recipes.deleteOne({ _id: objectId });
 // }
 // Add transaction support for critical operations
+
+// export async function deleteRecipe(id) {
+//   const objectId = new ObjectId(id);
+//   const session = cachedClient.startSession();
+
+//   try {
+//     session.startTransaction();
+
+//     // First check if recipe exists
+//     const recipe = await collections.recipes.findOne(
+//       { _id: objectId },
+//       { session }
+//     );
+//     if (!recipe) {
+//       throw new Error("Recipe not found");
+//     }
+
+//     // Remove recipe from any meal plans that reference it
+//     await collections.mealPlans.updateMany(
+//       { recipeIds: objectId },
+//       { $pull: { recipeIds: objectId } },
+//       { session }
+//     );
+
+//     // Delete the recipe
+//     await collections.recipes.deleteOne({ _id: objectId }, { session });
+
+//     await session.commitTransaction();
+//     return true;
+//   } catch (error) {
+//     await session.abortTransaction();
+//     throw error;
+//   } finally {
+//     session.endSession();
+//   }
+// }
+
+// 修改deleteRecipe函数，不使用事务
 export async function deleteRecipe(id) {
-  const objectId = new ObjectId(id);
-  const session = cachedClient.startSession();
-
   try {
-    session.startTransaction();
+    const objectId = new ObjectId(id);
 
-    // First check if recipe exists
-    const recipe = await collections.recipes.findOne(
-      { _id: objectId },
-      { session }
-    );
+    // 首先检查食谱是否存在
+    const recipe = await collections.recipes.findOne({ _id: objectId });
     if (!recipe) {
       throw new Error("Recipe not found");
     }
 
-    // Remove recipe from any meal plans that reference it
+    // 从任何引用它的餐食计划中移除食谱
     await collections.mealPlans.updateMany(
       { recipeIds: objectId },
-      { $pull: { recipeIds: objectId } },
-      { session }
+      { $pull: { recipeIds: objectId } }
     );
 
-    // Delete the recipe
-    await collections.recipes.deleteOne({ _id: objectId }, { session });
-
-    await session.commitTransaction();
-    return true;
+    // 删除食谱
+    return await collections.recipes.deleteOne({ _id: objectId });
   } catch (error) {
-    await session.abortTransaction();
+    console.error("Error deleting recipe:", error);
     throw error;
-  } finally {
-    session.endSession();
   }
 }
 
