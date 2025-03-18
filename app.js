@@ -232,8 +232,8 @@ app.get("*", (req, res) => {
 
 if (isVercel) {
   connectToDatabase()
-    .then(() => console.log("数据库连接成功"))
-    .catch((err) => console.error("数据库连接失败:", err));
+    .then(() => console.log("db was connected"))
+    .catch((err) => console.error("error:", err));
 }
 
 export default app;
