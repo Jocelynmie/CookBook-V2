@@ -47,27 +47,63 @@ export async function addRecipe(recipe) {
 }
 
 //update recipe
-export async function updateRecipe(id, recipe) {
-  return await collections.recipes.updateOne(
-    {
-      _id: new ObjectId(id),
-    },
-    {
-      $set: {
-        ...recipe,
-        updateAt: new Date(),
-      },
-    }
-  );
-}
+// export async function updateRecipe(id, recipe) {
+//   return await collections.recipes.updateOne(
+//     {
+//       _id: new ObjectId(id),
+//     },
+//     {
+//       $set: {
+//         ...recipe,
+//         updateAt: new Date(),
+//       },
+//     }
+//   );
+// }
 
+// export async function deleteRecipe(id) {
+//   const objectId = new ObjectId(id);
+//   const recipe = await collections.recipes.findOne({ _id: objectId });
+//   if (!recipe) {
+//     throw new Error("Recipe not found");
+//   }
+//   return await collections.recipes.deleteOne({ _id: objectId });
+// }
+// Add transaction support for critical operations
 export async function deleteRecipe(id) {
   const objectId = new ObjectId(id);
-  const recipe = await collections.recipes.findOne({ _id: objectId });
-  if (!recipe) {
-    throw new Error("Recipe not found");
+  const session = cachedClient.startSession();
+
+  try {
+    session.startTransaction();
+
+    // First check if recipe exists
+    const recipe = await collections.recipes.findOne(
+      { _id: objectId },
+      { session }
+    );
+    if (!recipe) {
+      throw new Error("Recipe not found");
+    }
+
+    // Remove recipe from any meal plans that reference it
+    await collections.mealPlans.updateMany(
+      { recipeIds: objectId },
+      { $pull: { recipeIds: objectId } },
+      { session }
+    );
+
+    // Delete the recipe
+    await collections.recipes.deleteOne({ _id: objectId }, { session });
+
+    await session.commitTransaction();
+    return true;
+  } catch (error) {
+    await session.abortTransaction();
+    throw error;
+  } finally {
+    session.endSession();
   }
-  return await collections.recipes.deleteOne({ _id: objectId });
 }
 
 export async function searchRecipesByName(name) {
