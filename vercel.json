@@ -6,31 +6,17 @@
       "use": "@vercel/node"
     },
     {
-      "src": "frontend/dist/**",
-      "use": "@vercel/static"
+      "src": "frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist",
+        "buildCommand": "npm run build"
+      }
     }
   ],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "app.js"
-    },
-    {
-      "src": "/(assets|images)/(.*)",
-      "dest": "frontend/dist/$1/$2"
-    },
-    {
-      "src": "/(.+\\.[a-zA-Z0-9]{2,})$",
-      "dest": "frontend/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "headers": { "cache-control": "s-maxage=0" },
-      "dest": "app.js"
-    }
-  ],
-  "env": {
-    "VERCEL": "true",
-    "NODE_ENV": "production"
-  }
+    { "src": "/api/(.*)", "dest": "app.js" },
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "app.js" }
+  ]
 }
