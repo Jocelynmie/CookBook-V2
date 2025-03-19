@@ -34,7 +34,7 @@ export async function connectToDatabase() {
   try {
     const client = new MongoClient(MONGODB_URI);
     await client.connect();
-    console.log("Successfully connected to MongoDB");
+    // console.log("Successfully connected to MongoDB");
 
     const db = client.db("CookBook");
 

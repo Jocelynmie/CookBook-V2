@@ -60,4 +60,21 @@ router.get("/mealplan/:id/shopping-list", async (req, res) => {
   }
 });
 
+router.post("/mealplan/:id/clear", async (req, res) => {
+  try {
+    const mealPlanId = req.params.id;
+
+    const result = await MealPlanModel.clearMealPlan(mealPlanId);
+
+    if (result.modifiedCount > 0) {
+      res.status(200).json({ message: "Meal plan cleared successfully" });
+    } else {
+      res.status(404).json({ message: "Meal plan not found or already empty" });
+    }
+  } catch (error) {
+    console.error("Error clearing meal plan:", error);
+    res.status(500).json({ error: "Failed to clear meal plan" });
+  }
+});
+
 export default router;

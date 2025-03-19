@@ -90,3 +90,15 @@ export async function clearMealPlan(mealPlanId) {
     }
   );
 }
+
+export async function clearShoppingListOnly(mealPlanId) {
+  return await collections.mealPlans.updateOne(
+    { _id: new ObjectId(mealPlanId) },
+    {
+      $set: {
+        shoppingList: [],
+        updatedAt: new Date(),
+      },
+    }
+  );
+}
