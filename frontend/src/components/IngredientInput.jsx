@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./IngredientInput.css";
+import "./css/IngredientInput.css";
 
 function IngredientInput({ ingredient, index, onChange }) {
   return (

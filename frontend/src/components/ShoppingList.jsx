@@ -114,7 +114,7 @@
 
 // export default ShoppingList;
 import { useState, useEffect } from "react";
-import "./ShoppingList.css";
+import "./css/ShoppingList.css";
 
 const ShoppingList = () => {
   const [recipes, setRecipes] = useState([]);

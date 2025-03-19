@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./AddRecipeForm.css";
+import "./css/AddRecipeForm.css";
 import PropTypes from "prop-types";
 import IngredientInput from "./IngredientInput.jsx";
 

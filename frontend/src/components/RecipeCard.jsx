@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./RecipeCard.css";
+import "./css/RecipeCard.css";
 import PropTypes from "prop-types";
 
 function RecipeCard({ recipeData, onRecipeDeleted }) {

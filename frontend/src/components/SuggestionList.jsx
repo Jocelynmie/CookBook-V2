@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import "./SuggestionList.css";
+import "./css/SuggestionList.css";
 
 export default function SuggestionList({ suggestions = [] }) {
   if (!suggestions || suggestions.length === 0) {

@@ -1,6 +1,6 @@
 // components/Navbar.jsx
 // import React from "react";
-import "./Navbar.css";
+import "./css/Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {

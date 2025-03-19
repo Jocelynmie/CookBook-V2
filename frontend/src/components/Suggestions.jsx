@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import SuggestionList from "./SuggestionList.jsx";
-import "./Suggestions.css";
+import "./css/Suggestions.css";
 
 function Suggestions() {
   const [name, setName] = useState("");
