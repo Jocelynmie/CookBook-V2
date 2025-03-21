@@ -4,7 +4,7 @@
 
 Website Link: https://cookbook-pyeao3erb-jocelynyangs-projects.vercel.app/recipes-page
 
-Design Document:https://drive.google.com/drive/home?dmr=1&ec=wgc-drive-globalnav-goto
+Design Document:https://drive.google.com/file/d/1YQFtBM_Tesu-gV_s_OU-Sn3xEE8HLNp7/view
 
 Slides: https://docs.google.com/presentation/d/1VDcab9xIlA2QVbcWGjjJgdHVOOMT55iPuVvs9yA-q3Q/edit#slide=id.g34252b1529a_0_33
 
@@ -103,7 +103,7 @@ A practical web application that transforms the traditional cookbook experience 
 
 ### Recipes Collection
 
-\_id: Unique identifier
+- \_id: Unique identifier
 
 - name: Recipe name
 - description: Recipe description
