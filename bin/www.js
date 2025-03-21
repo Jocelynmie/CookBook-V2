@@ -36,6 +36,7 @@ async function startServer() {
     server.on("error", onError);
     server.on("listening", onListening);
   } catch (error) {
+    console.log(error);
     process.exit(1);
   }
 }

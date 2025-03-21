@@ -7,7 +7,8 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import reactRefresh from "eslint-plugin-react-refresh";
 
 export default [
-  { ignores: ["public","dist"] },
+  // { ignores: ["public", "dist"] },
+  { ignores: ["public", "dist", "**/dist/**", "frontend/dist"] },
   pluginJs.configs.recommended,
   eslintConfigPrettier,
   {
