@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // For Vercel serverless environment, you need to handle connections differently
-const MONGODB_URI = process.env.MONGO_URL;
+// const MONGODB_URI = process.env.MONGO_URL;
+const MONGODB_URI = `${process.env.MONGO_URL}?maxPoolSize=10&connectTimeoutMS=10000&socketTimeoutMS=45000`;
 
 if (!MONGODB_URI) {
   throw new Error(

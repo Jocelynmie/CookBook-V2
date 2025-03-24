@@ -6,6 +6,7 @@ function RecipePage() {
   const [recipes, setRecipes] = useState([]);
   // const [loading, setLoading] = useState(true);
 
+  // use call back to avoid creating fetchRecipe every time when component render
   const fetchRecipes = useCallback(async () => {
     try {
       // setLoading(true);

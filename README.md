@@ -69,11 +69,36 @@ A practical web application that transforms the traditional cookbook experience 
 
 ### Development Tools
 
----
+- ESLint: JavaScript code quality tool for identifying and fixing problems in code
+- Prettier: Code formatter that enforces consistent style across project
+- Nodemon: Development utility that automatically restarts Node.js applications when file changes are detected
+- Git: Version control system for tracking changes and collaborating on code
+  dotenv: Module for loading environment variables from a .env file into process.env
+- npm: Package manager for JavaScript, used to install and manage project dependencies
 
 ## Code Architecture
 
----
+cookbook/
+├── .vercel # Vercel deployment configuration
+├── api # API entry points for Vercel serverless functions
+├── db # Database connection and models
+│ └── models # MongoDB data models
+│ ├── mealPlan.js
+│ ├── recipes.js
+│ └── suggestions.js
+├── frontend # React frontend application
+│ └── src
+│ ├── components # Reusable UI components
+│ ├── pages # Application pages
+│ ├── App.jsx # Main application component
+│ └── main.jsx # Application entry point
+├── routes # Express.js route handlers
+│ ├── mealplanRouter.js
+│ ├── recipeRouter.js
+│ └── suggestionRouter.js
+├── app.js # Express application setup
+├── connect.js # MongoDB connection management
+└── index.js # Application entry point
 
 ## API Endpoints
 
@@ -158,7 +183,7 @@ Claude 3.7 Sonent
 ## Installation
 
 - Clone the repository
-  git clone <repository-url>
+  git clone
 
 - Navigate to project directory
   cd cookbook

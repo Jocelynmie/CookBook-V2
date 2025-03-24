@@ -2,8 +2,17 @@ import { collections } from "../connect.js";
 import { ObjectId } from "mongodb";
 // import conenctToDatabase from "../connect.js";
 
+// export async function getAllRecipes() {
+//   return await collections.recipes.find({}).toArray();
+// }
 export async function getAllRecipes() {
-  return await collections.recipes.find({}).toArray();
+  try {
+    // await connectToDatabase(); // 确保连接已建立
+    return await collections.recipes.find({}).toArray();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 }
 
 //get recipe by id
@@ -107,24 +116,20 @@ export async function addRecipe(recipe) {
 //   }
 // }
 
-// 修改deleteRecipe函数，不使用事务
 export async function deleteRecipe(id) {
   try {
     const objectId = new ObjectId(id);
 
-    // 首先检查食谱是否存在
     const recipe = await collections.recipes.findOne({ _id: objectId });
     if (!recipe) {
       throw new Error("Recipe not found");
     }
 
-    // 从任何引用它的餐食计划中移除食谱
     await collections.mealPlans.updateMany(
       { recipeIds: objectId },
       { $pull: { recipeIds: objectId } }
     );
 
-    // 删除食谱
     return await collections.recipes.deleteOne({ _id: objectId });
   } catch (error) {
     console.error("Error deleting recipe:", error);
