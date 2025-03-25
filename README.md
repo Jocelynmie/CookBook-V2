@@ -78,27 +78,31 @@ A practical web application that transforms the traditional cookbook experience 
 
 ## Code Architecture
 
+<pre>
+# Code Architecture
+
 cookbook/
-├── .vercel # Vercel deployment configuration
-├── api # API entry points for Vercel serverless functions
-├── db # Database connection and models
-│ └── models # MongoDB data models
-│ ├── mealPlan.js
-│ ├── recipes.js
-│ └── suggestions.js
-├── frontend # React frontend application
-│ └── src
-│ ├── components # Reusable UI components
-│ ├── pages # Application pages
-│ ├── App.jsx # Main application component
-│ └── main.jsx # Application entry point
-├── routes # Express.js route handlers
-│ ├── mealplanRouter.js
-│ ├── recipeRouter.js
-│ └── suggestionRouter.js
-├── app.js # Express application setup
-├── connect.js # MongoDB connection management
-└── index.js # Application entry point
+├── .vercel          # Vercel deployment configuration
+├── api              # API entry points for Vercel serverless functions
+├── db               # Database connection and models
+│   └── models       # MongoDB data models
+│       ├── mealPlan.js
+│       ├── recipes.js
+│       └── suggestions.js
+├── frontend         # React frontend application
+│   └── src
+│       ├── components  # Reusable UI components
+│       ├── pages       # Application pages
+│       ├── App.jsx     # Main application component
+│       └── main.jsx    # Application entry point
+├── routes           # Express.js route handlers
+│   ├── mealplanRouter.js
+│   ├── recipeRouter.js
+│   └── suggestionRouter.js
+├── app.js           # Express application setup
+├── connect.js       # MongoDB connection management
+└── index.js         # Application entry point
+</pre>
 
 ## API Endpoints
 
