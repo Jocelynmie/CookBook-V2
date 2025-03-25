@@ -1,13 +1,13 @@
 import { collections } from "../connect.js";
 import { ObjectId } from "mongodb";
-// import conenctToDatabase from "../connect.js";
+import { connectToDatabase } from "../connect.js";
 
 // export async function getAllRecipes() {
 //   return await collections.recipes.find({}).toArray();
 // }
 export async function getAllRecipes() {
   try {
-    // await connectToDatabase(); // 确保连接已建立
+    await connectToDatabase();
     return await collections.recipes.find({}).toArray();
   } catch (error) {
     console.error(error);
