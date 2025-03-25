@@ -8,7 +8,7 @@ Design Document:https://drive.google.com/file/d/1YQFtBM_Tesu-gV_s_OU-Sn3xEE8HLNp
 
 Slides: https://docs.google.com/presentation/d/1VDcab9xIlA2QVbcWGjjJgdHVOOMT55iPuVvs9yA-q3Q/edit#slide=id.g34252b1529a_0_33
 
-Video:
+Video: https://youtu.be/hqAIwavxhDk
 
 ## Author
 
