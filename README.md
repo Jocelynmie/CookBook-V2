@@ -2,7 +2,7 @@
 
 ## Overview
 
-Website Link: https://cookbook-agiay6tmd-jocelynyangs-projects.vercel.app/
+Website Link: http://cook-book-v2-369fslahz-jocelynyangs-projects.vercel.app/
 
 Design Document:https://drive.google.com/file/d/1YQFtBM_Tesu-gV_s_OU-Sn3xEE8HLNp7/view
 
