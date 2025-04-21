@@ -1,18 +1,26 @@
+/* Accessible Navbar.css */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #dba0a9, #b0d1e8);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #4e4f31;
-  font-family: "Arial", sans-serif;
+  background: linear-gradient(
+    135deg,
+    #8e24aa,
+    #0d47a1
+  ); /* Higher contrast gradient */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  color: #ffffff; /* Better contrast with background */
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
   letter-spacing: 1px;
+  color: #ffffff; /* Ensure high contrast */
 }
 
 .navbar-nav {
@@ -27,24 +35,33 @@
   position: relative;
 }
 
-/* 导航链接 */
+/* Navigation links with improved contrast */
 .navbar-nav li a {
-  color: #4e4f31;
-  text-decoration: none;
+  color: #ffffff; /* High contrast against dark background */
+  text-decoration: none; /* Initial state without underline */
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 4px;
   transition: all 0.3s ease;
+  font-weight: 500; /* Slightly bolder for better visibility */
 }
 
 .navbar-nav li a:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.2); /* More visible hover state */
+  text-decoration: underline; /* Add underline on hover for better accessibility */
   transform: translateY(-2px);
 }
 
+.navbar-nav li a:focus {
+  outline: 2px solid #ffffff; /* Visible focus indicator */
+  outline-offset: 2px;
+}
+
+.navbar-nav li.active a,
 .navbar-nav li a.active {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.3); /* More visible active state */
   font-weight: bold;
+  text-decoration: underline; /* Underline active link for better accessibility */
 }
 
 .navbar-nav li a.active::after {
@@ -54,7 +71,46 @@
   left: 50%;
   transform: translateX(-50%);
   width: 60%;
-  height: 2px;
+  height: 3px; /* Thicker for better visibility */
   background: white;
   border-radius: 2px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .navbar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navbar-nav li {
+    margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar-nav li {
+    margin: 0.25rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-nav li a {
+    display: block;
+    padding: 0.5rem;
+  }
 }

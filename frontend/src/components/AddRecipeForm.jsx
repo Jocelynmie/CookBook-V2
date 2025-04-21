@@ -47,7 +47,7 @@ function AddRecipeForm({ onRecipeAdded }) {
     }
 
     const updatedIngredients = recipeData.ingredients.filter(
-      (_, i) => i !== index
+      (_, i) => i !== index,
     );
 
     setRecipeData({

@@ -24,7 +24,7 @@ export async function addRecipeToMealPlan(mealPlanId, recipeId) {
     {
       $addToSet: { recipeIds: new ObjectId(recipeId) },
       $set: { updatedAt: new Date() },
-    }
+    },
   );
 }
 
@@ -34,7 +34,7 @@ export async function deleteRecipeToMealPlan(mealPlanId, recipeId) {
     {
       $pull: { recipeIds: new ObjectId(recipeId) },
       $set: { updatedAt: new Date() },
-    }
+    },
   );
 }
 export async function getAllRecipesInMealPlan(mealPlanId) {
@@ -87,7 +87,7 @@ export async function clearMealPlan(mealPlanId) {
         recipeIds: [],
         updatedAt: new Date(),
       },
-    }
+    },
   );
 }
 
@@ -99,6 +99,6 @@ export async function clearShoppingListOnly(mealPlanId) {
         shoppingList: [],
         updatedAt: new Date(),
       },
-    }
+    },
   );
 }

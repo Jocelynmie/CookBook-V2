@@ -1,4 +1,4 @@
-/* Suggestions.css */
+/* Accessible Suggestions.css */
 
 .suggestions-page {
   max-width: 800px;
@@ -7,120 +7,196 @@
 }
 
 .suggestions-page h1 {
-  color: #333;
+  color: #212121; /* Darker text for better contrast */
   text-align: center;
   margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
 .suggestions-form-container {
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 20px;
+  background-color: #f8f9fa;
+  border: 2px solid #bdbdbd; /* Darker border for better contrast */
+  border-radius: 8px;
+  padding: 25px;
   margin-bottom: 30px;
 }
 
 .suggestions-form-container h2 {
-  color: #333;
+  color: #212121; /* Darker text for better contrast */
   margin-bottom: 20px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
+  border-bottom: 2px solid #bdbdbd; /* Darker border */
+  padding-bottom: 15px;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #212121; /* Darker text for better contrast */
+  font-size: 1rem;
 }
 
 .form-group input {
-  width: 60%; /* 减小输入框宽度 */
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  font-size: 14px;
+  width: 60%;
+  padding: 12px;
+  border: 2px solid #757575; /* Darker border for better contrast */
+  border-radius: 6px;
+  font-size: 16px;
+  color: #212121; /* Darker text */
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
 }
 
 .form-group textarea {
   width: 100%;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  font-size: 14px;
+  padding: 12px;
+  border: 2px solid #757575; /* Darker border for better contrast */
+  border-radius: 6px;
+  font-size: 16px;
+  color: #212121; /* Darker text */
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0056b3; /* Focus state border color */
+  box-shadow: 0 0 0 2px rgba(0, 86, 179, 0.25); /* Focus ring */
+  outline: none;
 }
 
 .form-group textarea {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #616161; /* Darker placeholder text for better contrast */
+}
+
 .submit-button {
-  background-color: #4a90e2;
+  background-color: #0056b3; /* WCAG AA compliant blue */
   color: white;
   border: none;
-  border-radius: 3px;
-  padding: 8px 15px;
-  font-size: 14px;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
-  width: auto; /* 改为自动宽度 */
-  min-width: 100px; /* 设置最小宽度 */
+  width: auto;
+  min-width: 120px;
+  font-weight: 600;
+  transition:
+    background-color 0.3s,
+    transform 0.1s;
 }
 
 .submit-button:hover {
-  background-color: #3a80d2;
+  background-color: #003d82;
+}
+
+.submit-button:active {
+  transform: scale(0.98);
+}
+
+.submit-button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
 }
 
 .submit-status {
   margin-top: 15px;
-  padding: 10px;
-  border-radius: 3px;
+  padding: 15px;
+  border-radius: 6px;
   text-align: center;
+  font-weight: 500;
 }
 
 .submit-status.success {
-  background-color: #dff0d8;
-  color: #3c763d;
-  border: 1px solid #d6e9c6;
+  background-color: #e8f5e9;
+  color: #2e7d32; /* WCAG AA compliant green */
+  border: 1px solid #c8e6c9;
 }
 
 .submit-status.error {
-  background-color: #f2dede;
-  color: #a94442;
-  border: 1px solid #ebccd1;
+  background-color: #ffebee;
+  color: #c62828; /* WCAG AA compliant red */
+  border: 1px solid #ffcdd2;
 }
 
 .loading-container {
   text-align: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  padding: 25px;
+  background-color: #f8f9fa;
+  border: 2px solid #bdbdbd; /* Darker border */
+  border-radius: 8px;
 }
 
 .error-container {
   text-align: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  color: #a94442;
+  padding: 25px;
+  background-color: #ffebee;
+  border: 2px solid #ef9a9a;
+  border-radius: 8px;
+  color: #c62828; /* WCAG AA compliant red */
 }
 
 .retry-button {
-  background-color: #d9534f;
+  background-color: #c62828; /* WCAG AA compliant red */
   color: white;
   border: none;
-  border-radius: 3px;
-  padding: 8px 12px;
-  margin-top: 10px;
+  border-radius: 6px;
+  padding: 10px 16px;
+  margin-top: 15px;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s;
 }
 
 .retry-button:hover {
-  background-color: #c9302c;
+  background-color: #b71c1c;
+}
+
+.retry-button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* Screen reader only class for additional context */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus visible utility class */
+.focus-visible:focus {
+  outline: 2px solid #0056b3 !important;
+  outline-offset: 2px !important;
+}
+
+@media (max-width: 768px) {
+  .form-group input {
+    width: 100%;
+  }
+
+  .submit-button {
+    width: 100%;
+  }
 }

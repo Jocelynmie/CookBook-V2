@@ -9,7 +9,7 @@ router.get("/mealplan/current", async (req, res) => {
     if (!mealPlan) {
       const result = await MealPlanModel.createMealPlan();
       const newMealPlan = await MealPlanModel.getMealPlanById(
-        result.insertedId
+        result.insertedId,
       );
       return res.json(newMealPlan);
     }
@@ -32,7 +32,7 @@ router.delete("/mealplan/:id/recipe/:recipeId", async (req, res) => {
   try {
     await MealPlanModel.deleteRecipeToMealPlan(
       req.params.id,
-      req.params.recipeId
+      req.params.recipeId,
     );
     res.json({ message: "recipe deleted successful" });
   } catch (error) {
@@ -52,7 +52,7 @@ router.get("/mealplan/:id/recipes", async (req, res) => {
 router.get("/mealplan/:id/shopping-list", async (req, res) => {
   try {
     const shoppingList = await MealPlanModel.generateShoppingList(
-      req.params.id
+      req.params.id,
     );
     res.json(shoppingList);
   } catch (error) {

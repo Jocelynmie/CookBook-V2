@@ -8,7 +8,7 @@ const MONGODB_URI = `${process.env.MONGO_URL}?maxPoolSize=10&connectTimeoutMS=10
 
 if (!MONGODB_URI) {
   throw new Error(
-    "Please define the MONGO_URL environment variable inside .env.local or in your Vercel project settings"
+    "Please define the MONGO_URL environment variable inside .env.local or in your Vercel project settings",
   );
 }
 

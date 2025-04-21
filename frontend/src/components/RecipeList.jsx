@@ -88,7 +88,7 @@ function RecipeList({ recipes: propRecipes, onRecipeDeleted }) {
 
       if (!response.ok) {
         throw new Error(
-          `Server returned ${response.status}: ${response.statusText}`
+          `Server returned ${response.status}: ${response.statusText}`,
         );
       }
 
@@ -123,7 +123,7 @@ function RecipeList({ recipes: propRecipes, onRecipeDeleted }) {
       onRecipeDeleted(recipeId);
     } else {
       setLocalRecipes((currentRecipes) =>
-        currentRecipes.filter((recipe) => recipe._id !== recipeId)
+        currentRecipes.filter((recipe) => recipe._id !== recipeId),
       );
     }
   };

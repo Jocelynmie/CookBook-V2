@@ -127,7 +127,7 @@ export async function deleteRecipe(id) {
 
     await collections.mealPlans.updateMany(
       { recipeIds: objectId },
-      { $pull: { recipeIds: objectId } }
+      { $pull: { recipeIds: objectId } },
     );
 
     return await collections.recipes.deleteOne({ _id: objectId });

@@ -46,7 +46,7 @@ SuggestionList.propTypes = {
         PropTypes.string,
         PropTypes.instanceOf(Date),
       ]).isRequired,
-    })
+    }),
   ),
 };
 
